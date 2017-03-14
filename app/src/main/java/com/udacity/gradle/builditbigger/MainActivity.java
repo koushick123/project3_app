@@ -55,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-        JokeDispatcher jokeDispatcher = new JokeDispatcher();
-        Toast.makeText(this, jokeDispatcher.getJoke(), Toast.LENGTH_SHORT).show();
-    }
-
     public void launchJokeActivity(View view) {
         try {
             joke = new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Koushick")).get();
