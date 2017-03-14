@@ -20,15 +20,17 @@ import com.udacity.gradle.builditbigger.backend.jokedispatcher.myApi.MyApi;
 import com.udacity.gradle.builditbigger.jokelibrary.JokeActivity;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    String joke = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Koushick"));
+        //new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Koushick"));
     }
 
     @Override
@@ -59,14 +61,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchJokeActivity(View view) {
+        try {
+            joke = new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Koushick")).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(this, JokeActivity.class);
-        JokeDispatcher jokeDispatcher = new JokeDispatcher();
-        String joke = jokeDispatcher.getJoke();
         intent.putExtra("JOKE", joke);
         startActivity(intent);
     }
 
-    private class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+    private class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String>{
         private MyApi myApiService = null;
         private Context context;
 
@@ -91,18 +98,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             context = params[0].first;
-            String name = params[0].second;
 
             try {
-                return myApiService.sayHi(name).execute().getData();
+                return myApiService.getJoke().execute().getData();
             } catch (IOException e) {
                 return e.getMessage();
             }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
     }
 }

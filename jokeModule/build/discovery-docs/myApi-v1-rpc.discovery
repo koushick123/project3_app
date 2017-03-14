@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"ODRTh3xaRR64wpeXJSlF33HMN-0/UeGCBDCQ1uo2RdRwL2iuf5PPqDI\"",
+ "etag": "\"ODRTh3xaRR64wpeXJSlF33HMN-0/ElPUnvrXjy8Fsi3X8GW2uaIMRWw\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -13,8 +13,8 @@
   "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
  },
  "protocol": "rpc",
- "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
- "rpcUrl": "https://myApplicationId.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://udacity-project3-161500.appspot.com/_ah/api/",
+ "rpcUrl": "https://udacity-project3-161500.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {
@@ -82,6 +82,16 @@
   }
  },
  "methods": {
+  "myApi.getJoke": {
+   "id": "myApi.getJoke",
+   "allowGet": true,
+   "returns": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "myApi.sayHi": {
    "id": "myApi.sayHi",
    "parameters": {
