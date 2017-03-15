@@ -4,7 +4,6 @@ public class JokeDispatcher {
 
     public String getJoke()
     {
-        return "What do you call the security outside of a Samsung Store?\n" +
-                "Guardians of the Galaxy.";
+        return "What do you call the security outside of a Samsung Store? Guardians of the Galaxy.";
     }
 }
