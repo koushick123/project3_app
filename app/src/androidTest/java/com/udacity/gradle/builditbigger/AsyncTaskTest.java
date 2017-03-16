@@ -1,17 +1,21 @@
 package com.udacity.gradle.builditbigger;
 
-import android.test.AndroidTestCase;
+import android.support.test.runner.AndroidJUnit4;
 
 import com.udacity.gradle.builditbigger.paid.sync.EndpointAsyncTask;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.concurrent.ExecutionException;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-public class AsyncTaskTest extends AndroidTestCase {
+@RunWith(AndroidJUnit4.class)
+public class AsyncTaskTest{
 
     @Test
     public void testJoke()
